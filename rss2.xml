@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rss  version="2.0">
+    <channel>
+        <title>AARP LiveFyre feed</title>
+        <link>https://aarp.org</link>
+        <description>The latest news about AARP</description>
+           <item>
+            <title>Take the True-or-False Face Mask Quiz</title>
+            <link>http://www.aarp.org/health/conditions-treatments/info-2020/face-mask-quiz.html?lf-content=248439058%3A869863241&amp;hubRefSrc=permalink</link>
+            <description>Item 1 AARP</description>
+            <guid isPermaLink="true">http://www.aarp.org/health/conditions-treatments/info-2020/face-mask-quiz.html</guid>
+            <pubDate>Wed, 01 Jul 2020 20:38:46 GMT</pubDate>
+        </item>
+        <item>
+            <title>Companies Raise Prices on COVID-19 Drugs, Others in Middle of Pandemic</title>
+            <link>http://www.aarp.org/politics-society/advocacy/info-2020/covid-drug-prices-increase.html?lf-content=249060012%3A869855144&amp;hubRefSrc=permalink</link>
+            <description>Item 2 AARP</description>
+            <guid isPermaLink="true">http://www.aarp.org/politics-society/advocacy/info-2020/covid-drug-prices-increase.html</guid>
+            <pubDate>Wed, 01 Jul 2020 18:22:19 GMT</pubDate>
+        </item>
+    </channel>
+</rss>
