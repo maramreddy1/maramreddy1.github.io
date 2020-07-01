@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
-   <channel>
-      <title>AARP LiveFyre feed</title>
-      <link>https://aarp.org</link>
-      <description>The latest news about AARP</description>
-      <lastBuildDate>Wed, 01 Jul 2020 19:35:16 GMT</lastBuildDate>
-      <generator>PyRSS2Gen-1.1.0</generator>
-      <docs>http://blogs.law.harvard.edu/tech/rss</docs>
-      <item>
-         <title>Are You Paying for Too Much Insurance?</title>
-         <link>http://www.aarp.org/money/budgeting-saving/info-2020/too-much-insurance.html?lf-content=248952749%3A869844459&amp;hubRefSrc=permalink</link>
-         <description>Hello this is test</description>
-         <guid isPermaLink="true">http://www.aarp.org/money/budgeting-saving/info-2020/too-much-insurance.html</guid>
-         <pubDate>Wed, 01 Jul 2020 15:53:07 GMT</pubDate>
-      </item>
+<channel>
+<title>MediaRoom (Movies for Grownups)</title>
+<link>https://press.aarp.org/</link>
+<description>MediaRoom</description>
+<item>
+<title>AARP The Magazine Announces Nominees for the 19th Annual Movies for Grownups® Awards </title>
+<link>https://press.aarp.org/2019-11-26-AARP-The-Magazine-Announces-Nominees-for-the-19th-Annual-Movies-for-Grownups-Awards</link>
+<description>The Best Movies for Grownups to be Honored at the Annual Awards in Los Angeles on Saturday, January 11</description>
+<pubDate>Tue, 26 Nov 2019 09:26:00 -0500</pubDate>
+<guid>https://press.aarp.org/2019-11-26-AARP-The-Magazine-Announces-Nominees-for-the-19th-Annual-Movies-for-Grownups-Awards</guid>
+</item>
    </channel>
 </rss>
