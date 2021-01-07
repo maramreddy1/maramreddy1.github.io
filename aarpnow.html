@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Chat</title>
+	</head>
+	<body>
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap" rel="stylesheet" />
+		<style>
+			.dockableContainer * {
+				box-sizing: border-box;
+			}
+			/* CHAT BUTTON START */
+
+			div.embeddedServiceHelpButton {
+				position: fixed;
+			}
+			div.embeddedServiceHelpButton .helpButton {
+				top: auto;
+				left: auto;
+				bottom: 45px;
+				right: 20px;
+			}
+
+			div.embeddedServiceHelpButton .helpButton .uiButton {
+				display: block;
+				min-width: 70px;
+				max-width: 70px;
+				height: 70px;
+				padding: 0;
+				margin: 0;
+				overflow: hidden;
+				border-radius: 50% !important;
+				box-shadow: none;
+				background-color: #c23934;
+				transition: 2s background-color ease;
+			}
+			div.embeddedServiceHelpButton .helpButton .uiButton:hover {
+				background-color: #c23934;
+			}
+
+			div.embeddedServiceHelpButton .embeddedServiceIcon {
+				margin-right: 0;
+				margin-bottom: 2px;
+			}
+			div.embeddedServiceHelpButton .embeddedServiceIcon::before {
+				font-size: 17px;
+			}
+
+			.embeddedServiceHelpButton .uiButton .helpButtonLabel .message {
+				font-family: Lato, sans-serif;
+				font-size: 13px;
+				font-weight: 700;
+				text-transform: uppercase;
+				text-overflow: unset !important;
+			}
+
+			.embeddedServiceHelpButton .helpButtonEnabled:focus .helpButtonLabel {
+				text-decoration: none !important;
+			}
+			/* CHAT BUTTON END */
+
+			/* CHAT FORM  START*/
+
+			div.layout-docked.embeddedServiceSidebar .dockableContainer {
+				height: 97%;
+				line-height: 14px;
+				font-family: Lato, sans-serif;
+				width: 320px;
+				max-height: 1000px;
+				border-radius: 8px 8px 0 0;
+			}
+
+			.dockableContainer .cCCare_PreChatFormNonSF .slds-input {
+				width: 100%;
+			}
+
+			.dockableContainer .slds-form-element__label {
+				overflow-wrap: break-word;
+				display: block;
+				color: rgba(0, 0, 0, 0.6);
+				font-size: 12px;
+				padding-right: 0;
+				padding-top: 0;
+				margin-bottom: 0;
+			}
+
+			.dockableContainer .embeddedServiceSidebarHeader .headerText {
+				margin: 0;
+				display: flex;
+				align-items: center;
+				text-transform: uppercase;
+			}
+
+			.dockableContainer .cCCare_PreChatFormNonSF .header .prechat-label {
+				line-height: 1.2;
+				color: #0e1719;
+			}
+
+			/* INPUT ELEMENTS START*/
+
+			.dockableContainer .slds-required {
+				color: rgb(194, 57, 52);
+				margin: 0px 0.125rem;
+			}
+
+			.dockableContainer .cCCare_PreChatForm.slds-form-element.cCCare_PreChatForm {
+				max-width: 270px;
+				margin-bottom: 10px;
+				text-align: left;
+				font-family: Lato, sans-serif;
+			}
+
+			.dockableContainer .cCCare_PreChatFormNonSF .prechat-text {
+				font-size: 13.6px;
+				margin: 10px 0 0 0;
+			}
+			.dockableContainer .error {
+				font-family: Lato, sans-serif;
+			}
+
+			.dockableContainer .cCCare_PreChatFormNonSF .slds-input {
+				font-family: Lato, sans-serif;
+				background-color: rgb(255, 255, 255);
+				border: 1px solid #efefef;
+				border-radius: 0.25rem;
+				width: 100%;
+				transition: border 0.1s linear, background-color 0.1s linear;
+				display: inline-block;
+				padding: 0 16px 0 12px;
+				line-height: 1.7px;
+				min-height: 32px;
+			}
+
+			.dockableContainer .slds-has-error {
+				font-family: Lato, sans-serif;
+			}
+
+			.dockableContainer .slds-has-error .slds-input {
+				background-color: rgb(255, 255, 255);
+				box-shadow: rgb(194, 57, 52) 0px 0px 0px 1px inset;
+				background-clip: padding-box;
+				border-color: rgb(194, 57, 52);
+			}
+
+			.dockableContainer .cCCare_PreChatFormNonSF .button {
+				font-size: 16px;
+				height: 32.6px;
+			}
+			/* INPUT ELEMENTS END */
+
+			.dockableContainer .slds-button:focus {
+				box-shadow: rgb(0, 112, 210) 0px 0px 3px;
+				outline: 0px;
+				border: none !important;
+			}
+
+			/* DURING CHAT */
+			.waitingCancelChat.uiButton.embeddedServiceSidebarButton {
+				background-color: #fbc743;
+			}
+
+			.waitingCancelChat.uiButton.embeddedServiceSidebarButton:hover,
+			.waitingCancelChat.uiButton.embeddedServiceSidebarButton:focus {
+				background-color: #fbc743 !important;
+			}
+
+			.waitingCancelChat.uiButton.embeddedServiceSidebarButton .label.bBody {
+				font-family: Lato, sans-serif;
+				font-size: 16px;
+				font-weight: bold;
+				text-decoration: none !important;
+				color: black;
+			}
+
+			/* CANCEL CHAT */
+
+			.dockableContainer .embeddedServiceSidebarDialogState .dialogTextContainer {
+				align-self: stretch;
+				max-height: 100%;
+				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				padding: 0 24px;
+			}
+
+			.dockableContainer .embeddedServiceSidebarState .dialogTextContainer #dialogTextBody {
+				padding-top: 5em;
+				text-align: center;
+				color: #000000;
+			}
+
+			.dockableContainer .embeddedServiceSidebarDialogState #dialogTextBody {
+				font-size: 0.875em;
+				color: #4f4f4f;
+				margin: 4px 0 0;
+				padding: 0 24px;
+				line-height: 1.3;
+				text-align: center;
+			}
+			.dockableContainer .embeddedServiceSidebarState .dialogTextContainer #dialogTextTitle {
+				display: none;
+			}
+			/* second half */
+			.dockableContainer .embeddedServiceSidebarDialogState .dialogButtonContainer {
+				padding: 0 24px 95px !important;
+			}
+
+			.dockableContainer .embeddedServiceSidebarDialogState .embeddedServiceSidebarButton {
+				width: 80%;
+				height: 35px;
+			}
+
+			.dockableContainer .embeddedServiceSidebarDialogState .dialogButton {
+				margin: 0 0 50px !important;
+			}
+			.dockableContainer .embeddedServiceSidebarButton {
+				background-color: #fbc743 !important;
+			}
+			.embeddedServiceSidebarButton:not(:disabled):focus,
+			.embeddedServiceSidebarButton:not(:disabled):hover {
+				background-color: #e0ab28 !important;
+				text-decoration: none !important;
+			}
+
+			.embeddedServiceSidebarButton .label,
+			.embeddedServiceSidebarButton:disabled .label {
+				color: #000000 !important;
+				font-size: 14px;
+				font-weight: 700 !important;
+			}
+			.embeddedServiceSidebar.modalContainer {
+				z-index: 9999999 !important;
+			}
+
+			.embeddedServiceSidebar.layout-docked .dockableContainer iframe.snapins_postChat + .hiddenAndTabbable {
+				display: none;
+			}
+
+			/* 1842 chat bubble */
+			.embeddedServiceSidebarMinimizedDefaultUI {
+				background-color: #c23934 !important;
+				width: 127.77px !important;
+				height: 60px !important;
+				min-width: 0 !important;
+				border-color: #c23934 !important;
+			}
+			.embeddedServiceSidebarMinimizedDefaultUI:focus {
+				background-color: #8b000e !important;
+				width: 127.77px !important;
+				min-width: 0 !important;
+				border-color: #8b000e !important;
+				height: 60px !important;
+			}
+			.sidebarHeader.minimizedContainer.embeddedServiceSidebarMinimizedDefaultUI .content {
+				padding: 0 !important;
+			}
+
+			.sidebarHeader.minimizedContainer.embeddedServiceSidebarMinimizedDefaultUI .messageContent .minimizedImage {
+				display: none !important;
+			}
+
+			.sidebarHeader.minimizedContainer.embeddedServiceSidebarMinimizedDefaultUI .minimizedText {
+				display: flex !important;
+				flex-direction: row;
+			}
+			.sidebarHeader.minimizedContainer.embeddedServiceSidebarMinimizedDefaultUI .help.embeddedServiceIcon {
+				display: none !important;
+			}
+			.sidebarHeader.minimizedContainer.embeddedServiceSidebarMinimizedDefaultUI .minimizedText:before {
+				content: ' ';
+				display: block;
+				height: 18px;
+				width: 20px;
+				transform: scale(0.76);
+				max-height: initial;
+				max-width: initial;
+				margin-right: 10px;
+				flex-shrink: 0;
+				background-size: cover;
+				background-repeat: no-repeat;
+				background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAMAAABsDg4iAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAOdQTFRFAAAA////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////WquIsgAAAE10Uk5TAA5Olb/WlA0GbdD+/89rApyYAQWRjQQAafllJe1wcaP3h/H78KbEZo7Lw4/Nn4iW/KxqeSHqK3QHmzH4pwN8ntHVdwiaRQtRx9/JVhF4+KZWAAAAw0lEQVR4nGWQaXPBYBhFb8QaV4ki1jYSRe2tfS9CLf3/v0dey2jifDwz93lmDiCQPLLX5/P6PQHcCYaUMC+EIy/Bq4vG+A81Ltxrgg6SKUBLZ5wyk9WQy9NFPoeC25FveCd1tWjQlGWTpaKqkx8okwkNFVaBKivQ7LefqD1k/SYbaIp5S8zbHRotMf/C9/OjLnp9tzMG4rwTcxjHqOaSYzvJZOp0s7ndY8GOsvy5peNqvRGRLHW7g/Rr7Q+H4/L0d4l5BvUDGZtndgqoAAAAAElFTkSuQmCC');
+			}
+			.embeddedServiceSidebarHeader span#headerTextLabel,
+			.embeddedServiceSidebarHeader #headerSubtext,
+			.embeddedServiceSidebarMinimizedDefaultUI .minimizedText > span.message,
+			div.embeddedServiceSidebar.modalContainer,
+			li.embeddedServiceLiveAgentStateChatItem.chatMessage button,
+			div.embeddedServiceLiveAgentStateChatInputFooter .chasitorText {
+				font-family: Lato, sans-serif;
+				font-weight: normal;
+			}
+		</style>
+
+		<script type="text/javascript" src="https://service.force.com/embeddedservice/5.0/esw.min.js"></script>
+		<script type="text/javascript">
+			//Calculating the AARP Object values if they exist
+			var ErrorMessage = ' ';
+			if (
+				typeof AARP != 'undefined' &&
+				typeof AARP.MetaInfo != 'undefined' &&
+				typeof AARP.MetaInfo.errors != 'undefined'
+			) {
+				if (typeof AARP.MetaInfo.errors.errormessage != 'undefined') {
+					ErrorMessage = AARP.MetaInfo.errors.errormessage;
+				}
+			}
+
+			var initESW = function(gslbBaseURL) {
+				embedded_svc.settings.displayHelpButton = true; //Or false
+				embedded_svc.settings.language = '';
+				embedded_svc.settings.autoOpenPostChat = true;
+				embedded_svc.settings.defaultMinimizedText = 'CHAT';
+				embedded_svc.settings.loadingText = 'Loading';
+				embedded_svc.settings.disabledMinimizedText = 'Offline';
+				embedded_svc.settings.prepopulatedPrechatFields = {
+					CCare_Trimmed_URL__c: window.location.origin + window.location.pathname,
+					CCare_Page_URL__c: window.location.href,
+					CCare_DSM_Identifier__c: window.location.pathname,
+					CCare_Error_Message__c: ErrorMessage
+				};
+
+				embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+				embedded_svc.settings.entryFeature = 'LiveAgent';
+
+				var visitor;
+
+				function messageListener(e) {
+					try {
+						if (typeof e.data === 'string' && e.data.indexOf('startSession') == 0) {
+							var key = e.data.split(':')[1];
+
+							GLANCE.Cobrowse.Visitor.startSession(key);
+						}
+
+						if (e.data) {
+							if (e.data.data) {
+								// Chat started.
+								if (e.data.data.event == 'chasitorChatEstablished') {
+									if (e.data.data.chasitorData) {
+										var visitorid = e.data.data.chasitorData.chatKey.replace(/-/g, '');
+
+										console.log('Chat Start - visitorid=' + visitorid);
+
+										visitor = new GLANCE.Presence.Visitor({
+											groupid: '21028',
+											visitorid: visitorid
+										});
+
+										visitor.presence();
+									}
+								}
+
+								// Chat restarted.
+								else if (e.data.method == 'liveagent.restored') {
+									if (e.data.data.chasitorSessionData) {
+										var visitorid = e.data.data.chasitorSessionData.chatKey.replace(/-/g, '');
+
+										console.log('Chat Restart - visitorid=' + visitorid);
+
+										visitor = new GLANCE.Presence.Visitor({
+											groupid: '21028',
+											visitorid: visitorid
+										});
+
+										visitor.presence();
+									}
+								}
+
+								// Chat timed out.
+								else if (e.data.data.event == 'chasitorIdleTimeout') {
+									if (visitor) {
+										visitor.disconnect();
+										GLANCE.Cobrowse.Visitor.stopSession();
+									}
+								}
+
+								// Chat ended.
+								else if (
+									e.data.data.event == 'chasitorAgentChatEnded' ||
+									e.data.data.event == 'chasitorChasitorChatEnded'
+								) {
+									if (visitor) {
+										console.log('Chat End');
+
+										visitor.disconnect();
+										GLANCE.Cobrowse.Visitor.stopSession();
+									}
+								}
+							}
+						}
+					} catch (err) {
+						console.log(' Glance error in external chat messageListener- ' + err.message);
+					}
+				}
+				if (window.addEventListener) {
+					addEventListener('message', messageListener, false);
+				} else {
+					attachEvent('onmessage', messageListener);
+				}
+
+				embedded_svc.settings.extraPrechatInfo = [
+					{
+						entityFieldMaps: [
+							{
+								doCreate: false,
+								doFind: false,
+								fieldName: 'LastName',
+								isExactMatch: false,
+								label: 'Last Name'
+							},
+							{
+								doCreate: false,
+								doFind: false,
+								fieldName: 'FirstName',
+								isExactMatch: false,
+								label: 'First Name'
+							},
+							{
+								doCreate: false,
+								doFind: false,
+								fieldName: 'Email',
+								isExactMatch: false,
+								label: 'Email Address'
+							},
+							{
+								doCreate: false,
+								doFind: false,
+								fieldName: 'CCare_IpAddress__c',
+								isExactMatch: false,
+								label: 'Ip Address'
+							}
+						],
+						entityName: 'Contact'
+					}
+				];
+
+				embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+					//if (prechatFormData[3].value === "other")
+					return prechatFormData[16].value;
+				};
+
+				embedded_svc.settings.extraPrechatFormDetails = [
+					{
+						label: 'First Name',
+						transcriptFields: ['CCare_First_Name__c']
+					},
+					{
+						label: 'Last Name',
+						transcriptFields: ['CCare_Last_Name__c']
+					},
+					{
+						label: 'Email Address',
+						transcriptFields: ['CCare_Email__c']
+					}
+				];
+
+				embedded_svc.init(
+					'https://aarpconsumercare--uat31.my.salesforce.com',
+					'https://uat31-aarpconsumercare.cs1.force.com',
+					gslbBaseURL,
+					'00DS0000003AeHP',
+					'CCare_External_ChatAgent',
+					{
+						baseLiveAgentContentURL: 'https://c.la1-c1cs-ph2.salesforceliveagent.com/content',
+						deploymentId: '5724P000000U1M7',
+						buttonId: '5734P000000DJFD',
+						baseLiveAgentURL: 'https://d.la1-c1cs-ph2.salesforceliveagent.com/chat',
+						eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I4P000000TQrOUAW_170c9473132',
+						isOfflineSupportEnabled: false
+					}
+				);
+			};
+
+			if (!window.embedded_svc) {
+				var s = document.createElement('script');
+				s.setAttribute('src', 'https://aarpconsumercare--uat31.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+				s.onload = function() {
+					initESW(null);
+				};
+				document.body.appendChild(s);
+			} else {
+				initESW('https://service.force.com');
+			}
+
+			function sessionStarted() {
+				GLANCE.Cobrowse.Visitor.addEventListener('sessionstart', () => {
+					GLANCE.Cobrowse.Visitor.continueSessionAt({
+						destination: 'https://uat31-aarpconsumercare.cs1.force.com/',
+						oncomplete: function() {
+							console.log('Session continued on https://uat31-aarpconsumercare.cs1.force.com/');
+						},
+						iewarningsuppressed: true
+					});
+				});
+			}
+
+			function submitClicked() {
+				try {
+					document.getElementById('glance-cobrowse').onload = event => {
+						GLANCE.Cobrowse.Visitor.addEventListener('sessionstart', sessionStarted);
+					};
+				} catch (err) {
+					console.log('Glance Error Session Started- ' + err.message);
+				}
+			}
+		</script>
+	</body>
+</html>
